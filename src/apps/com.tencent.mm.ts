@@ -1141,5 +1141,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 55,
+      name: '功能类-自动退出竖屏模式',
+      desc: '进入视频号竖屏播放页后点击返回',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'match',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.tencent.mm.plugin.finder.ui.FinderHomeAffinityUI',
+          matches: [
+            '[desc="关注"][visibleToUser=true] +n [desc="推荐"][visibleToUser=true]',
+            '@[vid="backBtn"][clickable=true][visibleToUser=true] > [desc="返回"]',
+          ],
+        },
+      ],
+    },
   ],
 });

@@ -447,5 +447,21 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 24,
+      name: '功能类-自动退出竖屏模式',
+      desc: '进入淘宝直播竖屏页后点击关闭',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'match',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.taobao.taolive.room.TaoLiveVideoActivity',
+          matches:
+            '@[desc="关闭"][clickable=true][visibleToUser=true] < LinearLayout < [vid="taolive_close_btn"]',
+        },
+      ],
+    },
   ],
 });

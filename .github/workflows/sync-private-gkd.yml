@@ -1,0 +1,71 @@
+name: Sync Private GKD Subscription
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */12 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout private repository
+        uses: actions/checkout@v4
+        with:
+          path: private-repo
+
+      - name: Checkout upstream repository
+        uses: actions/checkout@v4
+        with:
+          repository: Lin-arm/GKD_subscription
+          ref: main
+          path: upstream
+
+      - name: Preserve private automation
+        run: |
+          mkdir -p upstream/private upstream/.github/workflows
+          cp private-repo/private/apply_private_rules.mjs upstream/private/apply_private_rules.mjs
+          cp private-repo/.github/workflows/sync-private-gkd.yml upstream/.github/workflows/sync-private-gkd.yml
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Apply private rules
+        working-directory: upstream
+        run: node private/apply_private_rules.mjs .
+
+      - name: Install dependencies
+        working-directory: upstream
+        run: npx pnpm@10.25.0 install --frozen-lockfile
+
+      - name: Check subscription
+        working-directory: upstream
+        run: npx pnpm@10.25.0 run check
+
+      - name: Build subscription
+        working-directory: upstream
+        run: npx pnpm@10.25.0 run build
+
+      - name: Commit synchronized result
+        working-directory: upstream
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit --no-verify -m "chore: sync upstream with private rules"
+          fi
+
+      - name: Push to private repository
+        working-directory: upstream
+        run: git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF_NAME} --force --no-verify
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
