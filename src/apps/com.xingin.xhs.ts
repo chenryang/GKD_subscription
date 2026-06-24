@@ -470,5 +470,23 @@ export default defineGkdApp({
     //     },
     //   ],
     // },
+    {
+      key: 18,
+      name: '功能类-自动退出竖屏模式',
+      desc: '进入竖屏视频详情页后点击返回',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'match',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.xingin.matrix.detail.activity.DetailFeedActivity',
+          matches: [
+            '[name="com.xingin.redview.seekbar.VideoSeekBar"][visibleToUser=true]',
+            '@[desc="返回"][clickable=true][visibleToUser=true] +2 [desc="搜索"][visibleToUser=true]',
+          ],
+        },
+      ],
+    },
   ],
 });
