@@ -37,15 +37,6 @@ export default defineGkdApp({
           exampleUrls: 'https://e.gkd.li/7c97fdc7-9de0-403d-9817-e43da0eb8a31',
           snapshotUrls: 'https://i.gkd.li/i/22743677',
         },
-        {
-          key: 2,
-          name: '评论区评论氛围满意度',
-          fastQuery: true,
-          activityIds: '.main.MainActivity',
-          matches:
-            'FrameLayout[childCount=7] > [text$="评论氛围是否满意？,匿名"] + UIImage[text="关闭,按钮"][clickable=true][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/25571238',
-        },
       ],
     },
     {
@@ -71,28 +62,28 @@ export default defineGkdApp({
       key: 10,
       name: '权限提示-通知权限',
       desc: '点击[暂不]/[以后再说]/[禁止]',
-      fastQuery: true,
-      actionMaximum: 1,
-      resetMatch: 'app',
-      activityIds: [
-        '.main.MainActivity',
-        '.profile.ui.UserProfileActivity',
-        '.detail.ui.DetailActivity',
-      ],
       rules: [
         {
-          key: 1,
+          fastQuery: true,
+          actionMaximum: 1,
+          resetMatch: 'app',
+          activityIds: [
+            '.main.MainActivity',
+            '.profile.ui.UserProfileActivity',
+            '.detail.ui.DetailActivity',
+          ],
           matches: [
-            '[text^="打开私信通知" || text="开启朋友的消息通知" || text="及时获得消息提醒" || text$="评论回复提醒"][visibleToUser=true]',
-            '[text="以后再说" || text="暂不开启" || text="禁止" || text="取消"][visibleToUser=true]',
+            'TextView[text$="提醒" || text$="通知"][text.length>5][visibleToUser=true]',
+            '[text="以后再说" || text="暂不开启" || text="禁止" || text="取消"][clickable=true]',
           ],
           snapshotUrls: [
-            'https://i.gkd.li/i/13669790', //这些开启通知请求形式各不相同！
-            'https://i.gkd.li/i/18417891',
-            'https://i.gkd.li/i/18419574',
-            'https://i.gkd.li/i/25024525',
-            'https://i.gkd.li/i/25063241',
-            'https://i.gkd.li/i/26240394',
+            'https://i.gkd.li/i/13669790', // 及时获得消息提醒
+            'https://i.gkd.li/i/25024525', // 点击允许，及时获得评论回复提醒
+            'https://i.gkd.li/i/25063241', // 及时获取评论回复提醒
+            'https://i.gkd.li/i/26240394', // 及时获得评论回复提醒
+            'https://i.gkd.li/i/29402255', // 及时收到博主更新提醒
+            'https://i.gkd.li/i/18419574', // 私信通知
+            'https://i.gkd.li/i/18417891', // 朋友消息通知
           ],
         },
       ],
@@ -319,7 +310,7 @@ export default defineGkdApp({
     {
       key: 24,
       name: '功能类-刷到推广视频时[上滑]',
-      desc: '应用/购物/游戏/咨询/预约/子薇剧场 等推广视频',
+      desc: '广告/应用/购物/游戏/咨询/服务/预约/子薇剧场 等推广视频',
       rules: [
         {
           fastQuery: true,
@@ -338,16 +329,23 @@ export default defineGkdApp({
           },
           activityIds: '.main.MainActivity',
           matches:
-            '([text$="广告"][vid="desc"][visibleToUser=true]) || ([text="应用" || text="购物" || text$="游戏" || text="咨询" || text="子薇剧场" || text="预约"][text.length<6][index=1][visibleToUser=true])',
+            '([visibleToUser=true] > [text$="广告" || text$="（推广）"][vid="desc" || desc="广告"]) || ([text="应用" || text="购物" || text$="游戏" || text="咨询" || text="服务" || text="预约" || text="子薇剧场"][text.length<6][index=1][visibleToUser=true])', // (选择器A) || (选择器B)
           snapshotUrls: [
-            'https://i.gkd.li/i/21142063', // [text$="广告"]
+            // 选择器A
+            'https://i.gkd.li/i/21142063', // [text$="广告"][vid="desc"]
+            'https://i.gkd.li/i/29403811', // [text$="（推广）"][vid="desc"]
+            'https://i.gkd.li/i/29403704', // [text$="广告"][desc="广告"]
+            'https://i.gkd.li/i/29403301', // [text$="广告"][desc="广告"] [visibleToUser=false]
+
+            // 选择器B
             'https://i.gkd.li/i/21142589', //应用
             'https://i.gkd.li/i/21142249', //购物
             'https://i.gkd.li/i/21142871', //游戏
-            'https://i.gkd.li/i/25355868', //咨询
-            'https://i.gkd.li/i/21523849', //子薇剧场
             'https://i.gkd.li/i/21725628', //小游戏
+            'https://i.gkd.li/i/25355868', //咨询
+            'https://i.gkd.li/i/29403479', //服务
             'https://i.gkd.li/i/21765934', //预约
+            'https://i.gkd.li/i/21523849', //子薇剧场
           ],
         },
       ],
@@ -452,17 +450,18 @@ export default defineGkdApp({
     },
     {
       key: 29,
-      name: '功能类-自动展开评论',
+      name: '功能类-评论区-自动展开评论',
       desc: '只展开一级评论，不点击展示更多',
+      fastQuery: true,
+      activityIds: [
+        '.detail.ui.DetailActivity',
+        '.main.MainActivity',
+        'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
+        '.searcharticle.detail.ArticleDetailActivity',
+        '.search.activity.SearchResultActivity',
+      ],
       rules: [
         {
-          fastQuery: true,
-          activityIds: [
-            '.detail.ui.DetailActivity',
-            '.main.MainActivity',
-            'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
-            '.searcharticle.detail.ArticleDetailActivity',
-          ],
           matches: '@[clickable=true] > [text^="展开"][text$="回复"]',
           snapshotUrls: [
             'https://i.gkd.li/i/25356027',
@@ -479,17 +478,18 @@ export default defineGkdApp({
     },
     {
       key: 30,
-      name: '功能类-自动展开评论_全部',
+      name: '功能类-评论区-自动展开评论_全部',
       desc: '基于上面追加点击展开更多',
+      fastQuery: true,
+      activityIds: [
+        '.detail.ui.DetailActivity',
+        '.main.MainActivity',
+        'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
+        '.searcharticle.detail.ArticleDetailActivity',
+        '.search.activity.SearchResultActivity',
+      ],
       rules: [
         {
-          fastQuery: true,
-          activityIds: [
-            '.detail.ui.DetailActivity',
-            '.main.MainActivity',
-            'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
-            '.searcharticle.detail.ArticleDetailActivity',
-          ],
           matches: '@[clickable=true] > [text^="展开更多"]',
           snapshotUrls: [
             'https://i.gkd.li/i/25619324',
@@ -504,16 +504,161 @@ export default defineGkdApp({
     },
     {
       key: 31,
-      name: '其他-直播间小黄车',
+      name: '其他-直播间-小黄车',
       desc: '关闭定时弹出的商品卡片',
       rules: [
         {
           fastQuery: true,
           activityIds: '.live.LivePlayActivity',
           matches:
-            '[desc="购买"][visibleToUser=true] <4 [childCount=4] < * -2 FrameLayout > [vid="iv_close"][clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/26754062',
+            '[desc="购买"][visibleToUser=true] <n LiveMeasureOnceRelativeLayout < * -2 FrameLayout > [vid="iv_close"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/26754062',
+            'https://i.gkd.li/i/29388290',
+          ],
           exampleUrls: 'https://e.gkd.li/8c5e6526-83e5-4ec6-b532-367ff6045bfc',
+        },
+      ],
+    },
+    {
+      key: 32,
+      name: '局部广告-直播-关闭推荐直播间',
+      desc: '刷到直播-> 可能喜欢这些直播 -> x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.main.MainActivity',
+          matches:
+            'ImageView + [text="你可能喜欢这些直播"][visibleToUser=true] + [vid="close"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/29387031',
+          exampleUrls: 'https://e.gkd.li/1ee3aa97-345d-42a3-af64-262230b650be',
+        },
+      ],
+    },
+    {
+      key: 33,
+      name: '局部广告-评论区-评论氛围满意度',
+      desc: '评论氛围满意度卡片-> x掉',
+      fastQuery: true,
+      activityIds: [
+        '.detail.ui.DetailActivity',
+        '.main.MainActivity',
+        'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
+        '.searcharticle.detail.ArticleDetailActivity',
+        '.search.activity.SearchResultActivity',
+      ],
+      rules: [
+        {
+          anyMatches: [
+            '@[text="关闭,按钮"][clickable=true] - [text$="评论氛围是否满意？,匿名"][visibleToUser=true]', // 优先使用
+            '@UIImage[clickable=true] - [text$="评论氛围是否满意？,匿名"][visibleToUser=true] < FrameLayout[childCount=7] <<4 FrameLayout[childCount=1][id=null][desc=null][text=null][clickable=false][visibleToUser=true][left=0][top!=0] + * > ViewGroup > [vid="avatar"]',
+          ], // 兜底
+          snapshotUrls: [
+            // 快查
+            'https://i.gkd.li/i/25571238',
+            'https://i.gkd.li/i/29388014',
+            // 无快查 (后来版本似乎)
+            'https://i.gkd.li/i/29387403',
+            'https://i.gkd.li/i/29388032',
+          ],
+          exampleUrls: 'https://e.gkd.li/f4c54b34-7d3c-499d-9ea0-f865f4cf9375',
+        },
+      ],
+    },
+    {
+      key: 34,
+      name: '功能类-评论区-展开部分折叠评论',
+      desc: '最底部已折叠部分评论-> 点击[展开]',
+      fastQuery: true,
+      activityIds: [
+        '.detail.ui.DetailActivity',
+        '.main.MainActivity',
+        'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
+        '.searcharticle.detail.ArticleDetailActivity',
+        '.search.activity.SearchResultActivity',
+      ],
+      rules: [
+        {
+          matches:
+            '@[text="展开"][clickable=true] - [text="已折叠部分评论"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/29389970',
+          exampleUrls: 'https://e.gkd.li/020fc4d1-784a-49bd-9a50-6504e0b040ae',
+        },
+      ],
+    },
+    {
+      key: 36,
+      name: '全屏广告-视频流-是广告认可不?[上滑]',
+      desc: '问你刚才是不是广告?-> 划掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.detail.ui.DetailActivity',
+          matches:
+            'UIText[text="你认为这个内容是【广告】吗？"][visibleToUser=true]',
+          swipeArg: {
+            start: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.6',
+            },
+            end: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.3',
+            },
+            duration: 200, //滑动时长
+          },
+          snapshotUrls: 'https://i.gkd.li/i/29401376',
+          exampleUrls: 'https://e.gkd.li/bd652ced-a3a8-4cbc-aae7-e309dcbfeb8e',
+        },
+      ],
+    },
+    {
+      key: 37,
+      name: '局部广告-视频流-当前直播满意?',
+      desc: '刷到直播看一段出现[你对直播满意吗]-> x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.main.MainActivity',
+          matches:
+            'FlattenUIText[text$="当前直播满意吗?"][visibleToUser=true] +3 LynxFlattenUI[text="关闭"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/29402787',
+          exampleUrls: 'https://e.gkd.li/7eff5d8e-60ca-4a49-838c-5d5fb1d0a54d',
+        },
+      ],
+    },
+    {
+      key: 38,
+      name: '其他-账号详情-商品页', // test
+      desc: '进入账号详情弹出的商品-> x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.main.MainActivity',
+          matches: [
+            'LinearLayout[childCount=3] > ImageView[vid!=null][text=null][desc=null][clickable=false][visibleToUser=true] + * -> [text="推荐"] <3 LinearLayout[childCount=3] + LinearLayout[childCount=3] > [text="直播中"]',
+            '@ImageView[clickable=true][id=null][text=null][desc=null] - FrameLayout >5 LinearLayout > TextView[text^="图集"]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/29403171',
+          exampleUrls: 'https://e.gkd.li/cbf081a4-4a57-4173-af3a-27334d7a2be6',
+        },
+      ],
+    },
+    {
+      key: 39,
+      name: '局部广告-视频流-左下角卡片',
+      desc: '一些视频中途弹出卡片广告',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.main.MainActivity',
+          matches:
+            '@UIView[clickable=true][id=null][text=""][desc=""][childCount=0] + UIText[text="广告"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/29403677',
+            'https://i.gkd.li/i/29403704',
+          ],
+          exampleUrls: 'https://e.gkd.li/ef72c43c-5fab-4b09-bbd0-bb0d754d2c12',
         },
       ],
     },

@@ -39,6 +39,12 @@ export default defineGkdApp({
             'https://i.gkd.li/i/29175754', //搜索历史
           ],
         },
+        {
+          key: 3,
+          matches:
+            '@View[width<130 && height<130] <3 FrameLayout <2 FrameLayout < [vid="sdk_view"]',
+          snapshotUrls: 'https://i.gkd.li/i/29440951',
+        },
 
         // 坐标点击的放后面, 从上往下依次点击按钮[跳过]附近的坐标, 总有一个能点中[跳过]
         {
@@ -49,8 +55,10 @@ export default defineGkdApp({
             left: 'width * 0.875',
             top: 'width * 0.10', // 目标节点的height变化太大，不建议使用
           },
-          matches: '[vid="ad_parent"][visibleToUser=true][width>=720]',
+          matches:
+            '[vid="ad_view" || vid="sdk_view"][visibleToUser=true][width>=720][childCount!=0]',
           snapshotUrls: 'https://i.gkd.li/i/23283060', // 按钮[跳过]的位置的top在 (0.05 ~ 0.12) * 宽度1216 范围内
+          excludeSnapshotUrls: 'https://i.gkd.li/i/29440952', // 白屏阶段 [vid="ad_loading_view"]
         },
         {
           key: 11,
@@ -60,7 +68,8 @@ export default defineGkdApp({
             left: 'width * 0.875',
             top: 'width * 0.135',
           },
-          matches: '[vid="ad_parent"][visibleToUser=true][width>=720]', // 选择器跟前面一样,只是点击位置不同
+          matches:
+            '[vid="ad_view" || vid="sdk_view"][visibleToUser=true][width>=720][childCount!=0]', // 选择器跟前面一样,只是点击位置不同
           snapshotUrls: [
             'https://i.gkd.li/i/13575257', // (旧快照) top在 (0.10 ~ 0.17) * 1080 内
             'https://i.gkd.li/i/18423724', // (0.11 ~ 0.16) * 1080
@@ -76,7 +85,8 @@ export default defineGkdApp({
             left: 'width * 0.875',
             top: 'width * 0.17',
           },
-          matches: '[vid="ad_parent"][visibleToUser=true][width>=720]',
+          matches:
+            '[vid="ad_view" || vid="sdk_view"][visibleToUser=true][width>=720][childCount!=0]',
           snapshotUrls: [
             'https://i.gkd.li/i/13601755', // (旧快照) top在 (0.11 ~ 0.18) * 1200 内
             'https://i.gkd.li/i/23324118', // (0.13 ~ 0.20) * 1280
@@ -94,34 +104,35 @@ export default defineGkdApp({
             left: 'width * 0.875',
             top: 'width * 0.20',
           },
-          matches: '[vid="ad_parent"][visibleToUser=true][width>=720]',
+          matches:
+            '[vid="ad_view" || vid="sdk_view"][visibleToUser=true][width>=720][childCount!=0]',
           snapshotUrls: 'https://i.gkd.li/i/16054268', // (0.15 ~ 0.22) * 1200
         },
       ],
     },
     {
       key: 3,
-      name: '分段广告-信息流广告',
-      desc: '点击关闭-点击不感兴趣',
+      name: '分段广告',
+      desc: '①点击[关闭] ②点击[不感兴趣]',
       fastQuery: true,
       rules: [
         {
           key: 1,
           activityIds: [
-            '.activity.SplashActivity',
-            '.subject.structure.activity.MovieActivity',
-            '.group.activity.GroupTopicActivity',
-            '.fangorns.topic.TopicsActivity',
-            '.subject.struct2.MovieActivity2',
+            '.activity.SplashActivity', //A
+            '.subject.structure.activity.MovieActivity', //B
+            '.group.activity.GroupTopicActivity', //D
+            '.fangorns.topic.TopicsActivity', //E
+            '.subject.struct2.MovieActivity2', //F
           ],
           matches:
             '[vid="ad_header_new"] > [vid="menu_item"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/18424402',
-            'https://i.gkd.li/i/18424418',
-            'https://i.gkd.li/i/18424924',
-            'https://i.gkd.li/i/19615325',
-            'https://i.gkd.li/i/23982599',
+            'https://i.gkd.li/i/18424402', //A
+            'https://i.gkd.li/i/18424418', //B
+            'https://i.gkd.li/i/18424924', //D
+            'https://i.gkd.li/i/19615325', //E
+            'https://i.gkd.li/i/23982599', //F
           ],
         },
         {
@@ -129,24 +140,26 @@ export default defineGkdApp({
           activityIds: [
             '.group.activity.GroupDetailActivity',
             '.group.activity.GroupTopicActivity',
+            '.search.activity.NewSearchActivity',
           ],
           matches:
-            '[vid="ad_not_interest" || vid="ad_tag" || vid="group_ad_not_interest"][visibleToUser=true]',
+            '[vid="ad_footer" || vid="feed_ad_group"] >(1,2) [text="广告"][clickable=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/18424568',
-            'https://i.gkd.li/i/18424574',
             'https://i.gkd.li/i/18424681',
             'https://i.gkd.li/i/18424818',
+            'https://i.gkd.li/i/29299047', //G
           ],
-          excludeSnapshotUrls: 'https://i.gkd.li/i/18422533',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/18422533', // [text="广告"][clickable=false]
         },
         {
           key: 3,
-          actionMaximum: 1,
-          activityIds: '.group.activity.GroupTopicActivity',
+          activityIds: '.search.activity.NewSearchActivity',
           matches:
-            '@Image[childCount=0][visibleToUser=true][text=""] < View[childCount=1] -2 View >2 [childCount=0][text="广告"] <<n [vid="structure_header_container"]',
-          snapshotUrls: 'https://i.gkd.li/i/18424747',
+            '@[vid="ad_not_interest" || vid="group_ad_not_interest"] -n [text="广告"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/29295745', //G
+            'https://i.gkd.li/i/29298939', //G
+          ],
         },
         {
           key: 4,
@@ -157,23 +170,35 @@ export default defineGkdApp({
           snapshotUrls: 'https://i.gkd.li/i/19621152',
         },
         {
+          key: 5,
+          activityIds: '.group.activity.GroupTopicActivity',
+          matches:
+            '@Image[childCount=0][visibleToUser=true][text=""] < View[childCount=1] -2 View >2 [childCount=0][text="广告"] <<n [vid="structure_header_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/18424747',
+        },
+
+        // 第二段
+        {
+          key: 20,
           preKeys: [1, 2, 3, 4],
-          activityIds: [
-            '.activity.SplashActivity',
-            '.subject.structure.activity.MovieActivity',
-            '.group.activity.GroupDetailActivity',
-            '.group.activity.GroupTopicActivity',
-            '.fangorns.topic.TopicsActivity',
-          ],
+          name: '②点击[不感兴趣]',
           matches: '@[clickable=true] > [text="不感兴趣"]',
           snapshotUrls: [
-            'https://i.gkd.li/i/18424404',
-            'https://i.gkd.li/i/18424419',
-            'https://i.gkd.li/i/18424568',
-            'https://i.gkd.li/i/18424674',
-            'https://i.gkd.li/i/18424711',
-            'https://i.gkd.li/i/19615333',
-            'https://i.gkd.li/i/19621163',
+            'https://i.gkd.li/i/18424404', //A
+            'https://i.gkd.li/i/18424419', //B
+            'https://i.gkd.li/i/18424574', //C
+            'https://i.gkd.li/i/18424711', //D
+            'https://i.gkd.li/i/19615333', //E
+            'https://i.gkd.li/i/29295746', //G
+          ],
+          activityIds: [
+            '.activity.SplashActivity', //A
+            '.subject.structure.activity.MovieActivity', //B
+            '.group.activity.GroupDetailActivity', //C
+            '.group.activity.GroupTopicActivity', //D
+            '.fangorns.topic.TopicsActivity', //E
+            '.subject.struct2.MovieActivity2', //F
+            '.search.activity.NewSearchActivity', //G 搜索页
           ],
         },
       ],
@@ -209,19 +234,20 @@ export default defineGkdApp({
             '.search.activity.NewSearchActivity',
           ],
           matches:
-            '@ImageView[childCount=0][visibleToUser=true] < FrameLayout[childCount=1] - LinearLayout[childCount=2] > [text="下载应用" || text="立即下载" || text="查看详情" || text="领取优惠" || text="进入小程序" || text="了解更多"][visibleToUser=true]',
+            '@ImageView[visibleToUser=true] < FrameLayout - [childCount=2] > [text^="立即" || text^="了解" || text*="查看" || text*="下载" || text*="领取" || text$="应用" || text$="详情" || text$="小程序"][text.length<6]',
           snapshotUrls: [
-            'https://i.gkd.li/i/18424415',
-            'https://i.gkd.li/i/29175754', //搜索页
+            'https://i.gkd.li/i/18424415', //查看详情
+            'https://i.gkd.li/i/29175754', //立即下载
+            'https://i.gkd.li/i/29298575', //立即打开
           ],
         },
         {
           key: 1,
           activityIds: '.group.activity.GroupTopicActivity',
           matches:
-            '@ImageView[childCount=0][visibleToUser=true] < FrameLayout[childCount=1] <3 FrameLayout +2 FrameLayout >2 [text="下载应用" || text="立即下载" || text="查看详情" || text="领取优惠" || text="进入小程序" || text="了解更多"]',
+            '@ImageView[childCount=0][visibleToUser=true] < FrameLayout[childCount=1] <3 FrameLayout +2 FrameLayout >2 [text^="立即" || text^="了解" || text*="查看" || text*="下载" || text*="领取" || text$="应用" || text$="详情" || text$="小程序"][text.length<6]',
           exampleUrls: 'https://e.gkd.li/735decb0-7f08-4c7d-8199-a38faf213f77',
-          snapshotUrls: 'https://i.gkd.li/i/18424859',
+          snapshotUrls: 'https://i.gkd.li/i/18424859', //下载应用
         },
         {
           key: 2,

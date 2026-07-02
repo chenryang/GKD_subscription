@@ -13,15 +13,6 @@ export default tsEslint.config(
     },
   },
   {
-    files: ['private/**/*.{js,cjs,mjs}'],
-    languageOptions: {
-      globals: {
-        console: 'readonly',
-        process: 'readonly',
-      },
-    },
-  },
-  {
     rules: {
       quotes: ['error', 'single', { allowTemplateLiterals: false }],
       'no-unused-vars': 'off',

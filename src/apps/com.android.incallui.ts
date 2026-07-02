@@ -49,11 +49,15 @@ export default defineGkdApp({
         },
         {
           key: 2,
+          action: 'clickCenter', // 不响应 clickNode 点击事件
           actionMaximum: 1, // [checkable=false] ,无 checked 变化,只能限制点击次数
           resetMatch: 'app',
           activityIds: '.InCallActivity',
           matches: '[vid="showAudioButton"][clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/20877514', // 华为版 电话app
+          snapshotUrls: [
+            'https://i.gkd.li/i/20877514', // 华为版 电话app
+            'https://i.gkd.li/i/29557697',
+          ],
         },
       ],
     },

@@ -26,12 +26,11 @@ export default defineGkdApp({
     },
     {
       key: 2,
-      name: '功能类-继续使用VPN',
+      name: '功能类-VIVO-继续使用VPN',
       desc: 'VPN似乎不可用?-继续使用',
       rules: [
         {
           fastQuery: true,
-          activityIds: 'com.google.firebase.MessagingUnityPlayerActivity',
           matches:
             '[text*="应用无法使用网络"] <<2 [vid="topPanel"] +2 [vid="buttonPanel"] >2 [text="继续使用VPN"][clickable=true][visibleToUser=true]',
           snapshotUrls: 'https://i.gkd.li/i/25832981',

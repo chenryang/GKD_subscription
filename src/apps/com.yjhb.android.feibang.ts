@@ -56,9 +56,36 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds: 'com.zx.core.code.activity.WebViewActivity',
           matches:
-            '[text="领奖励"][visibleToUser=true][index=parent.childCount.minus(1)] < @* <n View <<2 View[childCount=5] <n * < WebView <<4 LinearLayout <2 [id="android:id/content"]',
-          snapshotUrls: 'https://i.gkd.li/i/28591915',
+            '@[text="领奖励"][visibleToUser=true] < * <6 [childCount=6] <2 View[childCount<3] <n View[childCount=5] <n * < WebView <<4 LinearLayout <2 [id="android:id/content"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/28591915', // 1完成
+            'https://i.gkd.li/i/29405634', // 3,4,5完成
+          ],
           exampleUrls: 'https://e.gkd.li/b28c9e1c-d92d-413b-b30b-c994b2d3f582',
+        },
+      ],
+    },
+    {
+      key: 4,
+      name: '功能类-自动关闭[按要求提交信息]提示',
+      activityIds: 'com.zx.core.code.activity.TaskDetailsActivity',
+      fastQuery: true,
+      actionMaximum: 2,
+      resetMatch: 'app',
+      rules: [
+        {
+          key: 0,
+          name: '勾选[不再提醒]',
+          matches:
+            '[text="不再提醒"] - @View[clickable=true][focusable=true][text=null] < [childCount=2] - LinearLayout > [text^="请按照悬赏要求提交验证信息"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/29405401',
+          exampleUrls: 'https://e.gkd.li/16bd85ec-1d56-48d1-a779-b68014557dee',
+        },
+        {
+          preKeys: [0],
+          name: '点击[确定]',
+          matches: '[text="确定"][clickable=true][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/29405401',
         },
       ],
     },
