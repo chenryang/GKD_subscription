@@ -126,7 +126,7 @@ export default defineGkdApp({
         {
           key: 4,
           matches:
-            'ImageView[index=parent.childCount.minus(1)] < @[vid="obfuscated"][clickable=true] -n * < RelativeLayout + FrameLayout >n [text="广告"]',
+            'ImageView < @[vid="obfuscated"][clickable=true][childCount=1] -n * < RelativeLayout + FrameLayout >n [text="广告"]',
           exampleUrls: [
             'https://e.gkd.li/0ac82700-02f3-40c6-bf45-b21e365ac84c',
             'https://e.gkd.li/511c57bc-e11a-43b3-b4a3-9b49cf79d509',
@@ -140,6 +140,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/21556758',
             'https://i.gkd.li/i/24520138',
             'https://i.gkd.li/i/25710401',
+            'https://i.gkd.li/i/29640762', // ❗无快查,但是一截完快照它就触发了 (等第2次遇到再修)
           ],
         },
         {
@@ -302,12 +303,13 @@ export default defineGkdApp({
             'com.baidu.tbadk.browser.TBWebContainerActivity',
           ],
           matches:
-            'WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2]',
+            'WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2][width<150]',
           exampleUrls: 'https://e.gkd.li/ac3d88b7-31a2-441f-a4c8-8a73eaec24b9',
           snapshotUrls: [
             'https://i.gkd.li/i/13060891',
             'https://i.gkd.li/i/16703244',
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/29640529', // [width<150]
         },
       ],
     },
