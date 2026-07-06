@@ -5,9 +5,9 @@
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
 [![Release](https://img.shields.io/badge/发行版-v534-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
-[![已适配应用](https://img.shields.io/badge/已适配应用-955-brightgreen)](./dist/README.md#应用规则)
+[![已适配应用](https://img.shields.io/badge/已适配应用-956-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
-[![应用规则组](https://img.shields.io/badge/应用规则组-2353-orange)](./dist/README.md#应用规则)
+[![应用规则组](https://img.shields.io/badge/应用规则组-2356-orange)](./dist/README.md#应用规则)
 [![Telegram Chat](https://img.shields.io/badge/Telegram-交流群-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
 
 ## 📢声明
@@ -58,7 +58,7 @@
 
 <!-- > 当前版本: v534
 > 
-> 当前订阅文件已适配 955 个应用，共有 2353 应用规则组，3 全局规则组
+> 当前订阅文件已适配 956 个应用，共有 2356 应用规则组，3 全局规则组
 > 
 > 查看 [适配 APP 列表](./dist/README.md) -->
 
@@ -99,14 +99,11 @@
 
 ![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&max=200&_v=534)
 
-![Alt](https://repobeats.axiom.co/api/embed/db6f46a4bdc4e760fb51976db276f1febef5bdce.svg "报告分析图")
+<!-- repobeats 已失效 -->
+<!-- ![Alt](https://repobeats.axiom.co/api/embed/db6f46a4bdc4e760fb51976db276f1febef5bdce.svg "报告分析图") -->
 
 ## 📈Star History
 
-<a href="https://www.star-history.com/?repos=Lin-arm%2FGKD_subscription&type=timeline&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=Lin-arm/GKD_subscription&type=timeline&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=Lin-arm/GKD_subscription&type=timeline&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=Lin-arm/GKD_subscription&type=timeline&legend=top-left" />
- </picture>
-</a>
+<!-- [![Star History Chart](https://api.star-history.com/chart?repos=Lin-arm/GKD_subscription&type=date&legend=top-left)](https://www.star-history.com/?repos=Lin-arm%2FGKD_subscription&type=date&legend=top-left) -->
+
+[![Star History Chart](https://starhistory.link/Lin-arm/GKD_subscription.svg?theme=rose&style=glass)](https://starhistory.link/Lin-arm/GKD_subscription)
