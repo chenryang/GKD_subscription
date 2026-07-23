@@ -51,6 +51,7 @@ export default defineGkdApp({
           ],
         },
         {
+          key: 10,
           preKeys: [0],
           matches:
             '@[clickable=true] > [text="屏蔽" || text="直接关闭" || text="不喜欢此内容"]',
@@ -61,6 +62,12 @@ export default defineGkdApp({
             'https://i.gkd.li/i/17111452',
             'https://i.gkd.li/i/24589005',
           ],
+        },
+        {
+          key: 11,
+          preKeys: [0],
+          matches: '[text="直接关闭" || text="不喜欢此内容"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30309831',
         },
       ],
     },
@@ -90,12 +97,13 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          matches: '[vid="main_iv_close"]',
+          matches: '[!(text="定时")] + [vid="main_iv_close"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13251713', //你可能感兴趣的专辑
             'https://i.gkd.li/i/29967591', //会员弹窗
             'https://i.gkd.li/i/30176023', //赠给好友免费听
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/30299404', // 定时
           exampleUrls: [
             'https://e.gkd.li/8efcd568-13f2-4ac4-872a-fe6fc4affaec',
             'https://e.gkd.li/f82ca167-35a0-42b4-b955-c5ef6e5d94dd',
