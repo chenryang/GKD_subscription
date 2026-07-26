@@ -57,6 +57,7 @@ class IssueChecker(URLChecker):
         history_source: str = "",
         issue_action: str = "opened",
         issue_user: str = "",
+        issue_labels: list[str] | None = None,
         **kwargs,
     ) -> dict:
         """
@@ -78,6 +79,12 @@ class IssueChecker(URLChecker):
 
         # 初始化结果
         result = self._init_result()
+
+        # 评论事件：如果评论中无新链接，跳过所有分析，避免干扰正常交流
+        if issue_action == "comment" and comment_body:
+            new_links = self.extract_links(comment_body)
+            if not new_links:
+                return result
 
         # Step 1: 检查是否缺少快照（唯一致命）
         if not self.has_snapshot(links):
@@ -118,9 +125,11 @@ class IssueChecker(URLChecker):
         # 更新 network_status
         result["network_status"] = self._get_network_status(net_result)
 
-        # Step 5: 恢复判断
+        # Step 5: 恢复判断（仅当 Issue 确实存在警告标签时才触发）
         has_valid_snapshot = any(lnk.kind in ("gkd", "github_attachment") for lnk in net_result.good_links)
-        if issue_action in ("edited", "comment") and has_valid_snapshot:
+        warning_labels = {"缺失快照(no-snapshot)", "需补充链接(needs-link)", "链接失效(broken-link)"}
+        has_warning_label = bool(set(issue_labels or []) & warning_labels)
+        if issue_action in ("edited", "comment") and has_valid_snapshot and has_warning_label:
             result["warning_type"] = "recovery"
             result["comment_recovery"] = build_recovery_comment(issue_user)
 

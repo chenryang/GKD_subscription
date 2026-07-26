@@ -69,7 +69,7 @@ class SnapshotCache:
         cache_path = self.cache_dir / self.cache_file
 
         with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump(self._cache, f, ensure_ascii=False, indent=2)
+            json.dump(self._cache, f, ensure_ascii=False, separators=(",", ":"))
 
     def get(self, url: str, snapshot_cls: type | None = None) -> "SnapshotInfo | None":
         """
@@ -114,7 +114,7 @@ class SnapshotCache:
 
 # ── 便捷函数 ──
 
-# CI 环境缓存目录
+# CI 环境缓存目录（绝对路径，actions/cache 支持 workspace 外的路径）
 CI_CACHE_DIR = "/tmp/snapshot_cache"
 
 # 本地调试缓存目录
