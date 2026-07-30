@@ -21,13 +21,14 @@ export default defineGkdApp({
           key: 0,
           actionMaximum: 1,
           matches:
-            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭" || text*="Shake"]',
+            'TextView - @View[clickable=true][width<200] <(2,3) FrameLayout <2 FrameLayout < FrameLayout < [vid="ad_container"]',
+          // matches: '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭" || text*="Shake"]',
           snapshotUrls: [
-            'https://i.gkd.li/i/12503773',
             'https://i.gkd.li/i/13247610',
             'https://i.gkd.li/i/13264779',
             'https://i.gkd.li/i/13826359',
             'https://i.gkd.li/i/13827095',
+            'https://i.gkd.li/i/30529874',
           ],
         },
         {
@@ -225,6 +226,21 @@ export default defineGkdApp({
           matches:
             '[text="保存原图"] < @[clickable=true] <n View[childCount>2] < View < View < View < ViewGroup < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/28377623',
+        },
+      ],
+    },
+    {
+      key: 7,
+      name: '功能类-消息已读自动[确定]',
+      desc: '点击[确定]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.view.notification.v18.NotificationV18Activity',
+          matches:
+            '[text="确定"] < @[clickable=true] <6 View[getChild(0).text$="已读"] < View < ComposeView < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30532352',
+          exampleUrls: 'https://e.gkd.li/dbf91283-a342-416e-a009-5b7e67301c77',
         },
       ],
     },
