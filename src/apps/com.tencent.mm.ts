@@ -1174,6 +1174,23 @@ export default defineGkdApp({
     },
     {
       key: 56,
+      name: '功能类-付款时点击[使用面容]',
+      desc: '由[输密码]切换到[刷脸]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.plugin.lite.ui.WxaLiteAppTransparentLiteUI',
+          matches: [
+            '[vid="tenpay_keyboard_1"][visibleToUser=true]',
+            '[desc="使用面容"]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/30642415',
+          exampleUrls: 'https://e.gkd.li/0cb6496a-860e-41a5-b58a-16e07cc0214a',
+        },
+      ],
+    },
+    {
+      key: 57,
       name: '功能类-自动退出竖屏模式',
       desc: '进入视频号竖屏播放页后点击返回',
       matchTime: 10000,
