@@ -400,11 +400,14 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds: 'com.alipay.android.msp.ui.views.MspContainerActivity',
           matches: [
-            '[text^="开通"][text$="免密支付"][visibleToUser=true]',
-            '@[clickable=true] > [text="关闭"][visibleToUser=true]',
+            '[text^="开通"][text$="免密支付" || text*="极速付款"][visibleToUser=true]',
+            '@[clickable=true] > [text="不感兴趣"][visibleToUser=true]',
           ],
           exampleUrls: 'https://e.gkd.li/c8388cd5-a97f-4683-9ef1-2caa0a24de91',
-          snapshotUrls: 'https://i.gkd.li/i/19449399',
+          snapshotUrls: [
+            'https://i.gkd.li/i/19449399',
+            'https://i.gkd.li/i/30699230',
+          ],
         },
       ],
     },
@@ -788,6 +791,23 @@ export default defineGkdApp({
           matches:
             '[text="发送以下消息"] +n * > [text$="不再询问"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/25199524',
+        },
+      ],
+    },
+    {
+      key: 35,
+      name: '功能类-进入阿宝AI助手自动点击退出',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.AlipayLogin',
+          actionDelay: 200,
+          actionCd: 200,
+          matches:
+            '[id="com.alipay.android.phone.product_jinni_assistant:id/fl_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/30699639',
+          exampleUrls:
+            'https://github.com/user-attachments/assets/ef38deb5-dd80-4194-8206-38ffc06b9bbe',
         },
       ],
     },
