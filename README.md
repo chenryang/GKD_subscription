@@ -4,7 +4,7 @@
 
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
-[![Release](https://img.shields.io/badge/发行版-v604-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
+[![Release](https://img.shields.io/badge/发行版-v605-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
 [![已适配应用](https://img.shields.io/badge/已适配应用-983-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
 [![应用规则组](https://img.shields.io/badge/应用规则组-2449-orange)](./dist/README.md#应用规则)
@@ -56,7 +56,7 @@
 
 </details>
 
-<!-- > 当前版本: v604
+<!-- > 当前版本: v605
 > 
 > 当前订阅文件已适配 983 个应用，共有 2449 应用规则组，3 全局规则组
 > 
@@ -66,7 +66,7 @@
 
 - **致力于编写效率最高、误触最低、覆盖最全面的规则**
 
-- **已适配的规则需要等待发布更新才能生效，北京时间每天凌晨3点会自动发布更新，如果规则没有改动则不会发布更新，在 `GKD订阅界面` 下拉就能检测是否有更新 -> [点击查看更新日志](https://github.com/Lin-arm/GKD_subscription/releases)**
+- **已适配的规则需要等待发布更新才能生效，北京时间每天凌晨2:30后会自动发布更新，如果规则没有改动则不会发布更新，在 `GKD订阅界面` 下拉就能检测是否有更新 -> [点击查看更新日志](https://github.com/Lin-arm/GKD_subscription/releases)**
 
 - **仅启用 `开屏广告` 一类规则，其它所有规则均需用户手动打开，规则类别里可以批量开启某一类规则，建议按需开启规则，不要无脑开启规则，开启过多规则可能造成规则阻塞从而导致规则触发缓慢甚至不触发，并且规则开启越多耗电也越多 -> [点击查看耗电说明](https://gkd.li/guide/faq#power)**
 
@@ -95,7 +95,7 @@
 
 ## 🥇感谢以下开发者的贡献
 
-![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&max=200&_v=604)
+![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&max=200&_v=605)
 
 <!-- repobeats 已失效 -->
 <!-- ![Alt](https://repobeats.axiom.co/api/embed/db6f46a4bdc4e760fb51976db276f1febef5bdce.svg "报告分析图") -->
