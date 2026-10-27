@@ -1,13 +1,9 @@
-<!-- # @AIsouler/GKD_subscription (Fork版) -->
-
-<!-- [![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=GKD_subscription&width=800&height=300)](https://github.com/Lin-arm/GKD_subscription) -->
-
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
 [![Release](https://img.shields.io/badge/发行版-v620-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
-[![已适配应用](https://img.shields.io/badge/已适配应用-988-brightgreen)](./dist/README.md#应用规则)
+[![已适配应用](https://img.shields.io/badge/已适配应用-992-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
-[![应用规则组](https://img.shields.io/badge/应用规则组-2476-orange)](./dist/README.md#应用规则)
+[![应用规则组](https://img.shields.io/badge/应用规则组-2480-orange)](./dist/README.md#应用规则)
 [![Telegram Chat](https://img.shields.io/badge/Telegram-交流群-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
 
 ## 📢声明
@@ -27,12 +23,6 @@
   https://gkd667.vv.ax/gkd.json5
   ```
 
-- CloudFlare源 (国内可用)
-
-  ```txt
-  https://gkd-subscription-667.pages.dev/gkd.json5
-  ```
-
 - GitHub源 (国内需要魔法)
 
   ```txt
@@ -41,6 +31,12 @@
 
 <details>
 <summary>点击展开备用源</summary>
+
+- CloudFlare源 (国内可用)
+
+  ```txt
+  https://gkd-subscription-667.pages.dev/gkd.json5
+  ```
 
 - Xget源 (国内可用)
 
@@ -55,12 +51,6 @@
   ```
 
 </details>
-
-<!-- > 当前版本: v620
-> 
-> 当前订阅文件已适配 988 个应用，共有 2476 应用规则组，3 全局规则组
-> 
-> 查看 [适配 APP 列表](./dist/README.md) -->
 
 ## 📑说明
 
@@ -88,10 +78,16 @@
 
 - 相关教程/贡献此项目 -> 查看 [贡献指南](./CONTRIBUTING.md)
 
-## 🎉感谢以下项目
+## 📜 项目溯源
 
-- [gkd-kit/subscription](https://github.com/gkd-kit/subscription)
-- [AIsouler/GKD_subscription](https://github.com/AIsouler/GKD_subscription)
+1. [gkd-kit/subscription](https://github.com/gkd-kit/subscription)
+    原始官方订阅源，2023.7~2024.2，最后版本 `v185`
+
+2. [AIsouler/GKD_subscription](https://github.com/AIsouler/GKD_subscription)
+    Fork 自官方源，2024.2~2026.2，最后版本 `v406`
+
+3. [Lin-arm/GKD_subscription](https://github.com/Lin-arm/GKD_subscription)
+    Fork 自 AIsouler 版本，2026年2月从 `v406` 开始由社区续更至今
 
 ## 🥇感谢以下开发者的贡献
 
