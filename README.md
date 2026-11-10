@@ -1,9 +1,9 @@
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
 [![Release](https://img.shields.io/badge/发行版-v631-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
-[![已适配应用](https://img.shields.io/badge/已适配应用-1000-brightgreen)](./dist/README.md#应用规则)
+[![已适配应用](https://img.shields.io/badge/已适配应用-1003-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
-[![应用规则组](https://img.shields.io/badge/应用规则组-2507-orange)](./dist/README.md#应用规则)
+[![应用规则组](https://img.shields.io/badge/应用规则组-2511-orange)](./dist/README.md#应用规则)
 [![Telegram Chat](https://img.shields.io/badge/Telegram-交流群-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
 
 ## 📢声明
@@ -15,12 +15,15 @@
 
 ## 🚀订阅
 
+> [!IMPORTANT]
+> 感谢 CXPLAY 此前提供域名支持。因域名 `gkd667.vv.ax` 即将出售，原 CF 订阅源将停止使用，请及时更换其他订阅源。
+
 复制以下任一链接到 GKD 订阅的右下角 **+** 号那里导入，即可使用
 
-- 感谢由 CXPLAY 提供域名的CF源 (国内可用)
+- CloudFlare源 (国内可用)
 
   ```txt
-  https://gkd667.vv.ax/gkd.json5
+  https://gkd-subscription-667.pages.dev/gkd.json5
   ```
 
 - GitHub源 (国内需要魔法)
@@ -31,12 +34,6 @@
 
 <details>
 <summary>点击展开备用源</summary>
-
-- CloudFlare源 (国内可用)
-
-  ```txt
-  https://gkd-subscription-667.pages.dev/gkd.json5
-  ```
 
 - Xget源 (国内可用)
 
