@@ -3,7 +3,7 @@
 [![Release](https://img.shields.io/badge/发行版-v633-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
 [![已适配应用](https://img.shields.io/badge/已适配应用-1003-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
-[![应用规则组](https://img.shields.io/badge/应用规则组-2511-orange)](./dist/README.md#应用规则)
+[![应用规则组](https://img.shields.io/badge/应用规则组-2512-orange)](./dist/README.md#应用规则)
 [![Telegram Chat](https://img.shields.io/badge/Telegram-交流群-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
 
 ## 📢声明
@@ -15,8 +15,8 @@
 
 ## 🚀订阅
 
-> [!IMPORTANT]
-> 感谢 CXPLAY 此前提供域名支持。因域名 `gkd667.vv.ax` 即将出售，原 CF 订阅源将停止使用，请及时更换其他订阅源。
+> [!WARNING]
+> `gkd667.vv.ax` 域名的订阅源已停用，请更换其下方的其他源。
 
 复制以下任一链接到 GKD 订阅的右下角 **+** 号那里导入，即可使用
 
