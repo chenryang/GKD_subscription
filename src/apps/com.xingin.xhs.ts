@@ -121,7 +121,10 @@ export default defineGkdApp({
       name: '分段广告-信息流广告',
       desc: '①长按[赞助/广告]卡片 ②点击[不喜欢]',
       fastQuery: true,
-      activityIds: '.index.v2.IndexActivityV2',
+      activityIds: [
+        '.index.v2.IndexActivityV2',
+        'com.xingin.alioth.search.GlobalSearchHalfScreenActivity',
+      ],
       rules: [
         {
           key: 0,
@@ -135,6 +138,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/13470690',
             'https://i.gkd.li/i/27015032',
             'https://i.gkd.li/i/27015306',
+            'https://i.gkd.li/i/34992416',
           ],
           excludeSnapshotUrls: 'https://i.gkd.li/i/14392171', // 防止反复触发规则
           exampleUrls: [
@@ -460,17 +464,32 @@ export default defineGkdApp({
     },
     {
       key: 18,
-      name: '功能类-评论自动翻译',
-      desc: '⚠️有可能触发[回复评论]情况,新版app暂无问题',
+      name: '功能类-自动[翻译]评论',
+      desc: '⚠️上滑太快可能有误触[收藏]情况',
       rules: [
         {
           fastQuery: true,
-          activityIds: 'com.xingin.matrix.notedetail.NoteDetailActivity',
+          actionCd: 500,
+          actionDelay: 50,
+          activityIds: [
+            'com.xingin.matrix.notedetail.NoteDetailActivity',
+            'com.xingin.matrix.detail.activity.DetailFeedActivity',
+          ],
+          position: {
+            left: 'width * 0.9',
+            top: 'height * 0.5',
+          },
           matches:
-            '[vid="newTimePoiIpTransTv"][text$="回复 翻译"][visibleToUser=true]',
+            'ImageView[width<getPrev(1).height.plus(10)] < [childCount=2] - [text$="回复 翻译"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/26643975',
-            'https://i.gkd.li/i/34877018',
+            'https://i.gkd.li/i/34877018', //[height=27]
+            'https://i.gkd.li/i/35009573', //[height=55]
+            'https://i.gkd.li/i/35010199', //短视频评论区
+          ],
+          excludeSnapshotUrls: [
+            'https://i.gkd.li/i/35009881', //误触[回复], 用坐标将点击位置右移
+            'https://i.gkd.li/i/35010665', // [height=26], 会误触下方输入框; 完整显示应该是[height=55]; 用[点赞图标]的宽度做动态限制 ImageView[width<getPrev(1).height.plus(10)]
           ],
           exampleUrls: 'https://e.gkd.li/fc8d70d4-f743-45df-a9d2-f343e419ccd9',
         },
